@@ -42,6 +42,17 @@
   display: none;
 }
 
+#button {
+  height: 2rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+#button:hover {
+  background-color: black;
+  color: white;
+}
+
 .input-label {
   display: flex;
   flex-direction: column;
@@ -50,5 +61,29 @@
 }
 
 .input-label input {
-  padding: 0.3rem;
+  padding: 0.8rem;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid grey;
+}
+
+td {
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+th {
+  background-color: grey;
+}
+
+.results-container {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

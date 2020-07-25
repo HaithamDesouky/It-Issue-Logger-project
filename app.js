@@ -4,22 +4,35 @@ class Issue {
     this.name = name;
     this.issue = issue;
     this.department = department;
+    this.row = document.querySelector('tr');
+    this.removalButton = [];
   }
   addIssueToList() {
     const list = document.getElementById('issue-log');
     const row = document.createElement('tr');
+    const day = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
+    const seconds = new Date().getSeconds();
+    const time = `${hour}:${minute}:${seconds}  ${day}-${month}`;
+
     row.innerHTML = `
     <td>${this.name}</td>
     <td>${this.issue}</td>
     <td>${this.department}</td>
-    <td>${date.now()}</td>
-
-    
-    
-
+    <td>${time}</td>
     <td><a href="#" class="delete">X<a></td>
   `;
+
     list.appendChild(row);
+
+    document
+      .querySelectorAll('.delete')
+      .forEach(f => this.removalButton.push(f));
+    for (let button of this.removalButton) {
+      button.addEventListener('click', this.removeIssue);
+    }
   }
 
   showAlert(className) {
@@ -36,6 +49,10 @@ class Issue {
     document.getElementById('issue').value = '';
     document.getElementById('department').value = '';
   }
+
+  removeIssue() {
+    this.parentNode.parentNode.remove();
+  }
 }
 
 // Event Listeners
@@ -48,7 +65,6 @@ document
     const name = document.getElementById('name').value;
     const issue = document.getElementById('issue').value;
     const department = document.getElementById('department').value;
-    console.log(name, issue, department);
 
     // Instantiate issue
     const issueLog = new Issue(name, issue, department);
