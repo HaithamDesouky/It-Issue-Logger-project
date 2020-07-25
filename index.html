@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .success,
+      .error {
+        color: white;
+        padding: 5px;
+        margin: 5px 0 15px 0;
+      }
+
+      .success {
+        background: green;
+      }
+
+      .error {
+        background: red;
+      }
+    </style>
+    <title>IT Issues</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headings">
+        <h1>IT Issues</h1>
+        <em
+          >Please keep your it issues brief and succint. We will address each
+          one shortly.</em
+        >
+      </div>
+      <p id="error">'Please fill in all fields', 'error'</p>
+      <p id="success">
+        'Your issue has been logged! We will get back to you as soon as we can!'
+      </p>
+      <form id="submission-form">
+        <div class="input-label">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" />
+        </div>
+        <div class="input-label">
+          <label for="issue">Issue</label>
+          <input type="text" id="issue" placeholder="" />
+        </div>
+        <div class="input-label">
+          <label for="department">Department</label>
+          <input type="text" id="department" class="u-full-width" />
+        </div>
+        <div>
+          <input type="submit" value="Submit" class="u-full-width" />
+        </div>
+      </form>
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Issue</th>
+            <th>Deparment</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="issue-log"></tbody>
+      </table>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
