@@ -1,88 +1,123 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+
+app.use(express.urlencoded({ extended: true }));
+
+let item = '';
+let issues = [];
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.post('/', (req, res) => {
+  const day = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+  const hour = new Date().getHours();
+  const minute = new Date().getMinutes();
+  const seconds = new Date().getSeconds();
+  const time = `${hour}:${minute}:${seconds}  ${day}/${month}`;
+  req.body.time = time;
+  issue = req.body;
+  console.log(issues);
+  issues.push(issue);
+  res.render('index', { issues });
+});
+
+app.listen(3020);
+
 // Issue Constructor
-class Issue {
-  constructor(name, issue, department) {
-    this.name = name;
-    this.issue = issue;
-    this.department = department;
-    this.row = document.querySelector('tr');
-    this.removalButton = [];
-  }
-  addIssueToList() {
-    const list = document.getElementById('issue-log');
-    const row = document.createElement('tr');
-    const day = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-    const hour = new Date().getHours();
-    const minute = new Date().getMinutes();
-    const seconds = new Date().getSeconds();
-    const time = `${hour}:${minute}:${seconds}  ${day}-${month}`;
+// class Issue {
+//   constructor(name, issue, department) {
+//     this.name = name;
+//     this.issue = issue;
+//     this.department = department;
+//     this.row = document.querySelector('tr');
+//     this.removalButton = [];
+//   }
+//   addIssueToList() {
+//     const list = document.getElementById('issue-log');
+//     const row = document.createElement('tr');
+//     const day = new Date().getDate();
+//     const month = new Date().getMonth() + 1;
+//     const hour = new Date().getHours();
+//     const minute = new Date().getMinutes();
+//     const seconds = new Date().getSeconds();
+//     const time = `${hour}:${minute}:${seconds}  ${day}-${month}`;
 
-    row.innerHTML = `
-    <td>${this.name}</td>
-    <td>${this.issue}</td>
-    <td>${this.department}</td>
-    <td>${time}</td>
-    <td><a href="#" class="delete">X<a></td>
-  `;
+//     row.innerHTML = `
+//     <td>${this.name}</td>
+//     <td>${this.issue}</td>
+//     <td>${this.department}</td>
+//     <td>${time}</td>
+//     <td><a href="#" class="delete">X<a></td>
+//   `;
 
-    list.appendChild(row);
+//     list.appendChild(row);
 
-    document
-      .querySelectorAll('.delete')
-      .forEach(f => this.removalButton.push(f));
-    for (let button of this.removalButton) {
-      button.addEventListener('click', this.removeIssue);
-    }
-  }
+//     document
+//       .querySelectorAll('.delete')
+//       .forEach(f => this.removalButton.push(f));
+//     for (let button of this.removalButton) {
+//       button.addEventListener('click', this.removeIssue);
+//     }
+//   }
 
-  showAlert(className) {
-    const alert = document.getElementById(`${className}`);
-    alert.style.display = 'block';
+//   showAlert(className) {
+//     const alert = document.getElementById(`${className}`);
+//     alert.style.display = 'block';
 
-    setTimeout(() => {
-      alert.style.display = 'none';
-    }, 2000);
-  }
+//     setTimeout(() => {
+//       alert.style.display = 'none';
+//     }, 2000);
+//   }
 
-  clearFields() {
-    document.getElementById('name').value = '';
-    document.getElementById('issue').value = '';
-    document.getElementById('department').value = '';
-  }
+//   clearFields() {
+//     document.getElementById('name').value = '';
+//     document.getElementById('issue').value = '';
+//     document.getElementById('department').value = '';
+//   }
 
-  removeIssue() {
-    this.parentNode.parentNode.remove();
-  }
-}
+//   removeIssue() {
+//     this.parentNode.parentNode.remove();
+//   }
+// }
 
-// Event Listeners
-document
-  .getElementById('submission-form')
-  .addEventListener('submit', function (e) {
-    e.preventDefault();
+// // Event Listeners
+// document
+//   .getElementById('submission-form')
+//   .addEventListener('submit', function (e) {
+//     e.preventDefault();
 
-    // Get form values
-    const name = document.getElementById('name').value;
-    const issue = document.getElementById('issue').value;
-    const department = document.getElementById('department').value;
+//     // Get form values
+//     const name = document.getElementById('name').value;
+//     const issue = document.getElementById('issue').value;
+//     const department = document.getElementById('department').value;
 
-    // Instantiate issue
-    const issueLog = new Issue(name, issue, department);
+//     // Instantiate issue
+//     const issueLog = new Issue(name, issue, department);
 
-    // Validate
-    if (name === '' || issue === '' || department === '') {
-      // Error alert
-      issueLog.showAlert('error');
-    } else {
-      // Add issue to list
-      issueLog.addIssueToList(issue);
+//     // Validate
+//     if (name === '' || issue === '' || department === '') {
+//       // Error alert
+//       issueLog.showAlert('error');
+//     } else {
+//       // Add issue to list
+//       issueLog.addIssueToList(issue);
 
-      // Show success
-      issueLog.showAlert('success');
+//       // Show success
+//       issueLog.showAlert('success');
 
-      // Clear fields
-      issueLog.clearFields();
-    }
+//       // Clear fields
+//       issueLog.clearFields();
+//     }
 
-    e.preventDefault();
-  });
+//     e.preventDefault();
+//   });
+
+app.listen(3000);

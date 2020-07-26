@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    
-    <title>IT Issues</title>
-  </head>
-  <body>
-  
-    <nav>
-        Random Company
 
-        <ul>
-          <li><a href="/">Main Menu</a></li>
-          <li><a href=""> Issues by Departments</a></li>
-        <li><a href="">Some other link</a></li>
-        </ul>
-      </nav>
-  
-
-    <div class="container">
+<div class="container">
       <div class="headings">
         <h1>IT Issues</h1>
         <em
@@ -30,24 +8,24 @@
         >
       </div>
      
-      <form id="submission-form">
+      <form id="submission-form" action="/" method="POST">
         <div class="input-label">
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your name" value="=4" />
+          <input autocomplete="off" type="text" id="name" placeholder="Your name" name="name" />
         </div>
         <div class="input-label">
           <label for="issue">Issue</label>
-          <input type="text" id="issue" placeholder="" value="2" />
+          <input autocomplete="off" type="text" id="issue" placeholder="Describe your issue" name="issue" />
         </div>
         <div class="input-label">
           <label for="department">Department</label>
-          <input type="text" id="department" class="u-full-width" value="2" />
+          <input autocomplete="off" type="text" id="department" placeholder="Your department" name="department" />
         </div>
         <div>
           <input
             type="submit"
             value="Submit"
-            class="u-full-width"
+            name="button"
             id="button"
           />
         </div>
@@ -65,16 +43,29 @@
             <th>Issue</th>
             <th>Deparment</th>
             <th>Time/Date</th>
-            <th>Delete</th>
+            <th> Edit | Delete </th>
           </tr>
         </thead>
 
         <div class="log-container">
         <tbody id="issue-log"></tbody>
+      {{#each issues}}
+      <tr>
+         <td>{{name}}</td>
+    <td>{{issue}}</td>
+    <td>{{department}}</td>
+   <td>{{time}}</td>
+   <td><a href="">Edit</a>  <a href="">Delete</a> </td>
+
+      </tr>
+{{/each}}
+
+
+
+
       </table>
+
+    
+
      
    </div> </div>
-
-    <script src="app.js"></script>
-  </body>
-</html>
