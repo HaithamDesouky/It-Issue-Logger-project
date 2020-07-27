@@ -11,22 +11,24 @@
       <form id="submission-form" action="/" method="POST">
         <div class="input-label">
           <label for="name">Name</label>
-          <input autocomplete="off" type="text" id="name" placeholder="Your name" name="name" />
+          <input autocomplete="off" type="text" id="name" placeholder="Your name" name="name" required/>
         </div>
         <div class="input-label">
           <label for="issue">Issue</label>
-          <input autocomplete="off" type="text" id="issue" placeholder="Describe your issue" name="issue" />
+          <input autocomplete="off" type="text" id="issue" placeholder="Describe your issue" name="issue" required/>
         </div>
         <div class="input-label">
           <label for="department">Department</label>
-          <input autocomplete="off" type="text" id="department" placeholder="Your department" name="department" />
+          <input autocomplete="off" type="text" id="department" placeholder="Your department" name="department" required />
         </div>
         <div>
-          <input
+          <input 
             type="submit"
             value="Submit"
             name="button"
             id="button"
+            method="POST"
+            action="/"
           />
         </div>
       </form>
@@ -49,7 +51,7 @@
 
         <div class="log-container">
         <tbody id="issue-log"></tbody>
-      {{#each issues}}
+      {{#each data}}
       <tr>
          <td>{{name}}</td>
     <td>{{issue}}</td>

@@ -1,35 +1,30 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-
+const mongoose = require('mongoose');
+const baseRouter = require('./routers/router');
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.use(express.urlencoded({ extended: true }));
 
-let item = '';
-let issues = [];
+app.use(baseRouter);
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.post('/', (req, res) => {
-  const day = new Date().getDate();
-  const month = new Date().getMonth() + 1;
-  const hour = new Date().getHours();
-  const minute = new Date().getMinutes();
-  const seconds = new Date().getSeconds();
-  const time = `${hour}:${minute}:${seconds}  ${day}/${month}`;
-  req.body.time = time;
-  issue = req.body;
-  console.log(issues);
-  issues.push(issue);
-  res.render('index', { issues });
-});
-
-app.listen(3020);
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
+  .then(() => {
+    app.listen(process.env.PORT);
+    console.log('connected to mongoose');
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 // Issue Constructor
 // class Issue {
