@@ -4,14 +4,31 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const baseRouter = require('./routers/router');
+const issueRouter = require('./routers/issueRouter');
+const createError = require('http-errors');
+const logger = require('morgan');
+
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(baseRouter);
+app.use('/', baseRouter);
+app.use('/issue', issueRouter);
 
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Catch all error handler
+app.use((error, req, res, next) => {
+  // Set error information, with stack only available in development
+  res.locals.message = error.message;
+  res.locals.error = req.app.get('env') === 'development' ? error : {};
+  res.status(error.status || 500);
+  res.render('error');
+});
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,

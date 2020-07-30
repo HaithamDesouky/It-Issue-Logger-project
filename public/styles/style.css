@@ -79,6 +79,7 @@ td {
 th {
   background-color: rgb(49, 49, 49);
   color: white;
+  padding: 0.5rem;
 }
 
 .results-container {
@@ -87,6 +88,7 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3rem;
 }
 
 nav {
@@ -112,4 +114,23 @@ nav li {
 nav a {
   text-decoration: none;
   color: white;
+}
+
+#dropdown {
+  padding: 0.7rem;
+}
+
+.single-issue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  height: 80%;
+}
+
+.single-issue > div {
+  padding: 0.5rem;
 }

@@ -9,15 +9,19 @@ const issueSchema = new mongoose.Schema({
   },
   issue: {
     type: String,
-    minlength: 3,
-    maxlength: 100,
     required: true
   },
   department: {
     type: String,
-    minlength: 3,
-    maxlength: 100,
-    required: true
+    enum: [
+      'IT Support',
+      'Sales',
+      'Human Resources',
+      'Customer Support',
+      'Management',
+      'Development'
+    ],
+    default: 'Not specified'
   },
   time: {
     type: String,

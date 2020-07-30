@@ -19,8 +19,15 @@
         </div>
         <div class="input-label">
           <label for="department">Department</label>
-          <input autocomplete="off" type="text" id="department" placeholder="Your department" name="department" required />
-        </div>
+          <select name="department" id="dropdown">
+            <option value="IT Support">IT Support</option>
+            <option value="Customer Support">Customer Support</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Sales">Sales</option>
+            <option value="Management">Management</option>
+            <option value="Development">Development</option>
+          </select>
+                </div>
         <div>
           <input 
             type="submit"
@@ -45,7 +52,7 @@
             <th>Issue</th>
             <th>Deparment</th>
             <th>Time/Date</th>
-            <th> Edit | Delete </th>
+            <th> Manage </th>
           </tr>
         </thead>
 
@@ -57,7 +64,7 @@
     <td>{{issue}}</td>
     <td>{{department}}</td>
    <td>{{time}}</td>
-   <td><a href="">Edit</a>  <a href="">Delete</a> </td>
+   <td><a href="/issue/{{id}}">View</a> </td>
 
       </tr>
 {{/each}}
